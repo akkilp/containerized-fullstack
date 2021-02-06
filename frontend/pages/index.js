@@ -7,16 +7,13 @@ const fetcher = (...args) => fetch(...args).then(res => {
 function HomePage() {
     const { data, error } = useSWR('/api/quotes', fetcher)
 
-    if (error) return <div>failed to load</div>
-    if (!data) return <div>loading...</div>
-
     return (
         <>
         <div>
             Halojata vaan kaikille tasapuolisesti! :-)
         </div>
         <ul>
-            {data.map(item => <li> {item.name}: {item.quote}</li>)}
+            {!!data ? data.map(item => <li> {item.name}: {item.quote}</li>) : <div>loading...</div>}
         </ul>
         </>
 
