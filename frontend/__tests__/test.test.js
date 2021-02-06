@@ -6,14 +6,10 @@ describe('Pages', () => {
   describe('Index', () => {
     it('It prints out something', function () {
       const wrap = mount(<HomePage/>)
-      expect(wrap.find('div').text()).toBe('Halojata vaan kaikille tasapuolisesti!')
+      console.log(wrap)
+      expect(wrap.find(".target").text()).toBe('Halojata vaan kaikille tasapuolisesti! :-)')
     })
   })  
 
-  describe('Loading', () => {
-    it('It prints out loading', function () {
-      const wrap = mount(<HomePage/>)
-      expect(wrap.find('div').text()).toBe('loading...')
-    })
-  })  
+
 })

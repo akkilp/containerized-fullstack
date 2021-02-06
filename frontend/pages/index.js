@@ -9,7 +9,7 @@ function HomePage() {
 
     return (
         <>
-        <div>
+        <div className="target">
             Halojata vaan kaikille tasapuolisesti! :-)
         </div>
         <ul>
