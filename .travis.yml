@@ -11,12 +11,12 @@ script:
 after_success:
   - docker build -t akkilp/frontend ./frontend
   - docker build -t akkilp/nginx ./nginx
-  - docker build -t akkilp/server ./backend
+  - docker build -t akkilp/backend ./backend
 
 # Log in to the docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 # Push to docker-hub
-  - docker push akkilp/frontend 
+  - docker push akkilp/frontend
   - docker push akkilp/nginx 
   - docker push akkilp/backend
