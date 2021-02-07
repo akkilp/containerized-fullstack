@@ -17,6 +17,6 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 # Push to docker-hub
-  - docker push akkilp/frontend ./frontend
-  - docker push akkilp/nginx ./nginx
-  - docker push akkilp/server ./server
+  - docker push akkilp/frontend 
+  - docker push akkilp/nginx 
+  - docker push akkilp/server 
