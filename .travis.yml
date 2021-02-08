@@ -27,7 +27,7 @@ deploy:
   provider: elasticbeanstalk
   region: 'eu-west-3'
   app: 'Quotes-app'
-  env: 'Quotesapp.env'
+  env: 'Quotesapp-env'
   bucket_name: 'elasticbeanstalk-eu-west-3-057912440277'
   bucket_path: 'Quotes-app'
   on:
