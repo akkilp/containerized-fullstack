@@ -1,0 +1,30 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "frontend",
+            "image": "akkilp/frontend",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "backend",
+            "image": "akkilp/backend",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "akkilp/nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["frontend", "backend"]
+        }
+    ]
+}

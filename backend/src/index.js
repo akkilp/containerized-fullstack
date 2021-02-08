@@ -22,12 +22,28 @@ const pgClient = new Pool({
 })
 
 pgClient.on('connect', () => {
-  console.log('Connection established')
+  pgClient
+  .query('CREATE TABLE IF NOT EXISTS quotes (ID SERIAL PRIMARY KEY, name VARCHAR(30), quote TEXT);')
+  .catch(err => console.log(err));
 });
 
 
 app.get('/', (req,res) => {
   res.send("Terve")
+})
+
+
+app.get('/seed', (req,res) => {
+  const query = {
+    text: 'INSERT INTO quotes(name, quote) VALUES($1, $2)',
+    values: ['Mikko', 'Kiva on kun on kiva olla']
+  }
+  pgClient
+    .query(query)
+    .then(results => 
+      res.status(200)
+    )
+    .catch(err => console.log(err))
 })
 
 app.get('/quotes', (req,res) => {

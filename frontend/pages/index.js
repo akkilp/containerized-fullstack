@@ -7,6 +7,8 @@ const fetcher = (...args) => fetch(...args).then(res => {
 function HomePage() {
     const { data, error } = useSWR('/api/quotes', fetcher)
 
+    console.log(data)
+
     return (
         <>
         <div className="target">

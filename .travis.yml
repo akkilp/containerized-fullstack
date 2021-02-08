@@ -5,9 +5,11 @@ services:
 before_install:
   - docker build -t react-unit-test -f ./frontend/Dockerfile.dev ./frontend
 
+# Coverage is needed or the script waits forever
 script:
   - docker run react-unit-test npm test -- --coverage
 
+# Push images to docker-hub
 after_success:
   - docker build -t akkilp/frontend ./frontend
   - docker build -t akkilp/nginx ./nginx
@@ -20,3 +22,15 @@ after_success:
   - docker push akkilp/frontend
   - docker push akkilp/nginx 
   - docker push akkilp/backend
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-west-3'
+  app: 'Quotes-app'
+  env: 'Quotesapp.env'
+  bucket_name: 'elasticbeanstalk-eu-west-3-057912440277'
+  bucket_path: 'Quotes-app'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
