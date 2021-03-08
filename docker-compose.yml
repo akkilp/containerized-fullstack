@@ -40,6 +40,7 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=postgres_password
       - PGPORT=5432
+      - SERVERPORT=5000
     ports:
       - 5000:5000
   client:
