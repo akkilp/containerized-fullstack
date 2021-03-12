@@ -1,0 +1,27 @@
+CREATE TABLE IF NOT EXISTS users (
+    ID SERIAL PRIMARY KEY, 
+    name VARCHAR(30) UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS artists (
+    ID SERIAL PRIMARY KEY, 
+    name VARCHAR(30) UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS quotes (
+    ID SERIAL PRIMARY KEY, 
+    artist int REFERENCES artists DEFAULT 0, 
+    creator int REFERENCES users NOT NULL,
+    quote VARCHAR(200) UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS playlists (
+    ID SERIAL PRIMARY KEY, 
+    create_date DATE DEFAULT CURRENT_DATE, 
+    creator int REFERENCES users 
+);
+
+CREATE TABLE IF NOT EXISTS quotes_playlists(
+    quote int REFERENCES quotes, 
+    playlist int REFERENCES playlists ON DELETE CASCADE
+);
