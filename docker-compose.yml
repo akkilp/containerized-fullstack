@@ -5,7 +5,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=postgres_password
     volumes:
-      - ./db/1_init.sql:/docker-entrypoint-initdb.d/1_init.sql
+      - ./db/:/docker-entrypoint-initdb.d/
   pgadmin:
     links:
     - postgres
@@ -17,6 +17,8 @@ services:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
       - PGADMIN_DEFAULT_PASSWORD=admin
       - PGADMIN_LISTEN_PORT=8080
+    logging:
+      driver: none
   nginx:
     restart: always
     build: 
